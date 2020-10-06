@@ -36,9 +36,9 @@
            02 FO-4 PIC X(13).
            02 FO-5 PIC X(16).
 
-       FD ACTFILE
+       FD  ACTFILE
            DATA RECORD IS ACTFILE01.
-       01 ACTFILE01.
+       01  ACTFILE01.
            02 A-ACTNO PIC X(8).
            02 A-GARNAME PIC X(24).
            02 A-BILLADD PIC X(22).
@@ -109,121 +109,140 @@
                GO TO P2
            END-READ
 
-           MOVE FILEIN01 TO A-ACTNO
+           MOVE FILEIN01 TO A-ACTNO 
            READ ACTFILE INVALID DISPLAY FILEIN01 " BAD ACTNO"
            GO TO P1.
            IF A-PRINS NOT = "003" GO TO P1.
+
            IF A-SEINS = "001" OR "004" OR "064" OR "005" GO TO P1.
+           
            MOVE A-SEINS TO ALF3
            
            IF A-SEINS = "025"
-           MOVE "0005034" TO ALF7
-           MOVE "062" TO A-SEINS
-           MOVE "A" TO A-SE-ASSIGN
-           PERFORM A1 GO TO P1.
+             MOVE "0005034" TO ALF7
+             MOVE "062" TO A-SEINS
+             MOVE "A" TO A-SE-ASSIGN
+             PERFORM A1
+             GO TO P1.
            
            IF (A-SEINS = "108")
-           AND (A-SE-GROUP = "0038278" OR "038278" OR "38278")
-           MOVE "0005037" TO ALF7
-           MOVE "062" TO A-SEINS
-           MOVE "A" TO A-SE-ASSIGN
-           PERFORM A1 GO TO P1.
+             AND (A-SE-GROUP = "0038278" OR "038278" OR "38278")
+             MOVE "0005037" TO ALF7
+             MOVE "062" TO A-SEINS
+             MOVE "A" TO A-SE-ASSIGN
+             PERFORM A1
+             GO TO P1.
            
            IF (A-SEINS = "116")
-           MOVE "0000567" TO ALF7
-           MOVE "062" TO A-SEINS
-           MOVE "A" TO A-SE-ASSIGN
-           PERFORM A1 GO TO P1.
+             MOVE "0000567" TO ALF7
+             MOVE "062" TO A-SEINS
+             MOVE "A" TO A-SE-ASSIGN
+             PERFORM A1
+             GO TO P1.
            
            IF A-SEINS = "141"
-           MOVE "0099003" TO ALF7
-           MOVE "062" TO A-SEINS
-           MOVE "A" TO A-SE-ASSIGN
-           PERFORM A1 GO TO P1.
+             MOVE "0099003" TO ALF7
+             MOVE "062" TO A-SEINS
+             MOVE "A" TO A-SE-ASSIGN
+             PERFORM A1
+             GO TO P1.
            
            IF A-SEINS = "209"
-           MOVE "0000343" TO ALF7
-           MOVE "062" TO A-SEINS
-           MOVE "A" TO A-SE-ASSIGN
-           PERFORM A1 GO TO P1.
+             MOVE "0000343" TO ALF7
+             MOVE "062" TO A-SEINS
+             MOVE "A" TO A-SE-ASSIGN
+             PERFORM A1 GO TO P1.
            
            IF A-SEINS = "216"
-           MOVE "0005004" TO ALF7
-           MOVE "062" TO A-SEINS
-           MOVE "A" TO A-SE-ASSIGN
-           PERFORM A1 GO TO P1.
+             MOVE "0005004" TO ALF7
+             MOVE "062" TO A-SEINS
+             MOVE "A" TO A-SE-ASSIGN
+             PERFORM A1
+             GO TO P1.
            
            IF A-SEINS = "217"
-           MOVE "0001177" TO ALF7
-           MOVE "062" TO A-SEINS
-           MOVE "A" TO A-SE-ASSIGN
-           PERFORM A1 GO TO P1.
+             MOVE "0001177" TO ALF7
+             MOVE "062" TO A-SEINS
+             MOVE "A" TO A-SE-ASSIGN
+             PERFORM A1
+             GO TO P1.
            
            IF A-SEINS = "218"
-           MOVE "0000172" TO ALF7
-           MOVE "062" TO A-SEINS
-           MOVE "A" TO A-SE-ASSIGN
-           PERFORM A1 GO TO P1.
+             MOVE "0000172" TO ALF7
+             MOVE "062" TO A-SEINS
+             MOVE "A" TO A-SE-ASSIGN
+             PERFORM A1
+             GO TO P1.
            
            IF A-SEINS = "220"
-           MOVE "0005004" TO ALF7
-           MOVE "062" TO A-SEINS
-           MOVE "A" TO A-SE-ASSIGN
-           PERFORM A1 GO TO P1.
+             MOVE "0005004" TO ALF7
+             MOVE "062" TO A-SEINS
+             MOVE "A" TO A-SE-ASSIGN
+             PERFORM A1
+             GO TO P1.
            
            IF A-SEINS = "226"
-           MOVE "0005154" TO ALF7
-           MOVE "062" TO A-SEINS
-           MOVE "A" TO A-SE-ASSIGN
-           PERFORM A1 GO TO P1.
+             MOVE "0005154" TO ALF7
+             MOVE "062" TO A-SEINS
+             MOVE "A" TO A-SE-ASSIGN
+             PERFORM A1
+             GO TO P1.
            
            IF A-SEINS = "227"
-           MOVE "0000557" TO ALF7
-           MOVE "062" TO A-SEINS
-           MOVE "A" TO A-SE-ASSIGN
-           PERFORM A1 GO TO P1.
+             MOVE "0000557" TO ALF7
+             MOVE "062" TO A-SEINS
+             MOVE "A" TO A-SE-ASSIGN
+             PERFORM A1
+             GO TO P1.
            
            IF A-SEINS = "228"
-           MOVE "0000582" TO ALF7
-           MOVE "062" TO A-SEINS
-           MOVE "A" TO A-SE-ASSIGN
-           PERFORM A1 GO TO P1.
+             MOVE "0000582" TO ALF7
+             MOVE "062" TO A-SEINS
+             MOVE "A" TO A-SE-ASSIGN
+             PERFORM A1
+             GO TO P1.
            
            IF A-SEINS = "230"
-           MOVE "0005023" TO ALF7
-           MOVE "062" TO A-SEINS
-           MOVE "A" TO A-SE-ASSIGN
-           PERFORM A1 GO TO P1.
+             MOVE "0005023" TO ALF7
+             MOVE "062" TO A-SEINS
+             MOVE "A" TO A-SE-ASSIGN
+             PERFORM A1
+             GO TO P1.
            
            IF A-SEINS = "231"
-           MOVE "0001110" TO ALF7
-           MOVE "062" TO A-SEINS
-           MOVE "A" TO A-SE-ASSIGN
-           PERFORM A1 GO TO P1.
+             MOVE "0001110" TO ALF7
+             MOVE "062" TO A-SEINS
+             MOVE "A" TO A-SE-ASSIGN
+             PERFORM A1
+             GO TO P1.
            
            IF A-SEINS = "234"
-           MOVE "0000762" TO ALF7
-           MOVE "062" TO A-SEINS
-           MOVE "A" TO A-SE-ASSIGN
-           PERFORM A1 GO TO P1.
+             MOVE "0000762" TO ALF7
+             MOVE "062" TO A-SEINS
+             MOVE "A" TO A-SE-ASSIGN
+             PERFORM A1
+             GO TO P1.
            
            IF A-SEINS = "236"
-           MOVE "0000873" TO ALF7
-           MOVE "062" TO A-SEINS
-           MOVE "A" TO A-SE-ASSIGN
-           PERFORM A1 GO TO P1.
+             MOVE "0000873" TO ALF7
+             MOVE "062" TO A-SEINS
+             MOVE "A" TO A-SE-ASSIGN
+             PERFORM A1
+             GO TO P1.
            
            IF A-SEINS = "237"
-           MOVE "0000762" TO ALF7
-           MOVE "062" TO A-SEINS
-           MOVE "A" TO A-SE-ASSIGN
-           PERFORM A1 GO TO P1.
+             MOVE "0000762" TO ALF7
+             MOVE "062" TO A-SEINS
+             MOVE "A" TO A-SE-ASSIGN
+             PERFORM A1
+             GO TO P1.
            
            IF A-SEINS = "238"
-           MOVE "0005041" TO ALF7
-           MOVE "062" TO A-SEINS
-           MOVE "A" TO A-SE-ASSIGN
-           PERFORM A1 GO TO P1.
+             MOVE "0005041" TO ALF7
+             MOVE "062" TO A-SEINS
+             MOVE "A" TO A-SE-ASSIGN
+             PERFORM A1
+             GO TO P1.
            
            IF A-SEINS = "239"
            MOVE "0000111" TO ALF7
