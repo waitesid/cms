@@ -255,6 +255,7 @@
        01  ALF13 PIC X(13).
        01  ALF20 PIC X(20).  
        01  MEDREC PIC X(6).
+       01  CNTR-CHARGE PIC X.
 
        PROCEDURE DIVISION.
        0005-START.
@@ -266,9 +267,9 @@
                GO TO P99
            END-READ
 
-           IF FI-1 = "##"
-               MOVE FILEIN01(10:15) TO HOLDNAME
-           END-IF    
+      *     IF FI-1 = "##"
+      *         MOVE FILEIN01(10:15) TO HOLDNAME
+      *     END-IF    
 
            IF FI-1 = "##"
                MOVE FILEIN01 TO REC101
@@ -282,9 +283,10 @@
 
            IF FI-1 NOT = "$$"
                WRITE FILEOUT01 FROM FILEIN01
+               MOVE 0 TO CNTR-CHARGE
                GO TO P1
            END-IF
-
+           
            MOVE FILEIN01 TO REC301
            MOVE R3-PROC TO PROC-KEY1
            
@@ -309,7 +311,16 @@
            IF PROC-AMOUNT = 0
                AND R3-GLC NOT = 0
                GO TO BAD-2
-           END-IF                       
+           END-IF
+
+           IF PROC-AMOUNT = 0
+              AND CNTR-CHARGE = 0
+               GO TO BAD-3
+           END-IF
+
+           IF PROC-AMOUNT NOT = 0
+             ADD 1 TO CNTR-CHARGE
+           END-IF 
 
            WRITE FILEOUT01 FROM REC301
            GO TO P1.
@@ -335,6 +346,19 @@
            WRITE ERRFILE01.
            
            GO TO P1.    
+
+       BAD-3.
+           MOVE SPACE TO ERRFILE01.    
+
+           STRING "AUC G CODE FOR " MEDREC " CDM " PROC-KEY1 
+                  " CPT " PROC-KEY2 " DOS "
+                  R3-DATE " with no corresponding charges?" 
+               DELIMITED BY SIZE INTO ERRFILE01
+
+           WRITE ERRFILE01.
+           
+           GO TO P1.    
+
            
        P99.
            CLOSE PROCFILE FILEIN FILEOUT ERRFILE.
