@@ -328,6 +328,15 @@
        BAD-1.
            MOVE SPACE TO ERRFILE01.    
 
+           IF R3-PROC = "6327"
+             MOVE "77049" TO R3-CPT
+             WRITE FILEOUT01 FROM REC301
+             STRING "DANG C8908 FOR " MEDREC " MOVING IN CPT 77049"
+               DELIMITED BY SIZE INTO ERRFILE01
+             WRITE ERRFILE01
+             GO TO P1
+           END-IF    
+
            STRING "UNDEFINED PROCEDURE FOR " MEDREC " " R3-PROC 
                   " " R3-CPT " DOS " R3-DATE ". This should be fixed."
                DELIMITED BY SIZE INTO ERRFILE01
