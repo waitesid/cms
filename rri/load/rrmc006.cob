@@ -1040,7 +1040,7 @@
            IF R1-IP1 = "00930"
                PERFORM REPLACE-1 THRU REPLACE-1-EXIT.
            
-           IF R1-IP1 = "00698" OR "00699"
+           IF R1-IP1 = "00698" OR "00699" OR "00433" OR "00930"
                PERFORM REPLACE-2 THRU REPLACE-2-EXIT
            END-IF
 
