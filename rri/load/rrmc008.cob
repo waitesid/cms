@@ -355,7 +355,24 @@
 
            IF R3-PROC = "1204" AND R3-MOD1 = "50"
              MOVE "1" TO BILAT-FLAG
-           end-if                                            
+           end-if   
+
+           IF ((R3-PROC = "0111" or "0126") AND R3-MOD1 = "  "
+             AND BILAT-FLAG = "1")
+             MOVE SPACE TO ERRFILE01
+             STRING "DELETING REDUNDANT BILAT femur " MEDREC " " 
+               R3-PROC " " R3-CPT " " R3-MOD1 " DOS " R3-DATE
+               DELIMITED BY SIZE INTO ERRFILE01
+             WRITE ERRFILE01
+      *    special handling for cdm 0111 cpt 73552 from rrmc
+      *    set flag back to 0
+             MOVE "0" TO BILAT-FLAG
+             GO TO P1
+           end-if                
+
+           IF (R3-PROC = "0111" or "0126") AND R3-MOD1 = "50"
+             MOVE "1" TO BILAT-FLAG
+           end-if                                                      
 
            WRITE FILEOUT01 FROM REC301
            GO TO P1.
